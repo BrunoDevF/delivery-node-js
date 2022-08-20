@@ -8,7 +8,7 @@ import { authenticateDeliverymanController } from "./modules/account/authenticat
 import { createDeliveryController } from "./modules/deliveries/useCases/createDelivery";
 import { findAllAvailableController } from "./modules/deliveries/useCases/findAllAvailable";
 import { updateDeliverymanController } from "./modules/deliveries/useCases/updateDeliveryman/useCases";
-import { findAllDeliveriesController } from "./modules/clients/useCases/deliveries";
+import { findAllDeliveriesController } from "./modules/deliveryman/useCases/findAllDeliveries";
 // middlewares
 import { ensureAuthenticateClient } from "./middlewares/ensureAuthenticateClient";
 import { ensureAuthenticateDeliveryman } from "./middlewares/ensureAuthenticateDeliveryman";
@@ -45,5 +45,11 @@ routes.get(
   ensureAuthenticateClient,
   findAllDeliveriesController.handle
 );
+
+routes.get(
+    "/deliveryman/deliveries",
+    ensureAuthenticateDeliveryman,
+    findAllDeliveriesController.handle
+  );
 
 export default routes;
